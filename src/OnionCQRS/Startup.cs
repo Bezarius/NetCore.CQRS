@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OnionCQRS.Bootstrapper;
+using OnionCQRS.Core.Data;
 using OnionCQRS.Data;
 using OnionCQRS.Infrastructure.Logging;
 
@@ -43,6 +44,8 @@ namespace OnionCQRS
             // Add framework services.
             services.AddDbContext<CompanyDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ICompanyDbContext>(provider => provider.GetService<CompanyDbContext>());
 
             services.AddMvc();
 
@@ -95,8 +98,6 @@ namespace OnionCQRS
             }
 
             app.UseStaticFiles();
-
-            app.UseIdentity();
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 

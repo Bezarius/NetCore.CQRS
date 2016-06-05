@@ -4,6 +4,7 @@
   "dependencies": {
     "Autofac": "4.0.0-rc2-240",
     "Autofac.Extensions.DependencyInjection": "4.0.0-rc2-240",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "MediatR": "2.0.2",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",

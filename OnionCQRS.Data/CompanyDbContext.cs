@@ -7,6 +7,7 @@ using OnionCQRS.Data.Helper;
 
 namespace OnionCQRS.Data
 {
+    //http://benjii.me/2016/05/dotnet-ef-migrations-for-asp-net-core/
     public class CompanyDbContext : DbContext, ICompanyDbContext
     {
         public DbSet<Employee> Employees { get; set; }
