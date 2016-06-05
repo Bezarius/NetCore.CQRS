@@ -1,0 +1,22 @@
+﻿{
+  "title": "DbContextScope.UnitOfWork.EfCore",
+  "version": "1.1.0",
+  "authors": [ "Camilo Fierro" ],
+  "description": "This package provides a way to implement Unit Of Work and Repository patterns with Entity Framework Core and DbContextScope.",
+
+  "dependencies": {
+    "DbContextScope.EfCore": "1.1.0",
+    "DbContextScope.UnitOfWork.Core": "1.1.0",
+    "Microsoft.EntityFrameworkCore.Relational": "1.0.0-rc2-final"
+  },
+
+  "frameworks": {
+    "net4.5.1": { }
+  },
+
+  "packOptions": {
+    "tags": [ "Unit of Work, Repository, Pattern, Data, EntityFramework, ASP.NET, DbContext, DbContextScope" ],
+    "projectUrl": "https://github.com/ninety7/DbContextScope",
+    "licenseUrl": ""
+  }
+}

@@ -1,0 +1,15 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Autofac": "4.0.0-rc2-240",
+    "AutoMapper": "5.0.0-beta-1",
+    "FluentValidation": "6.3.4-alpha",
+    "OnionCQRS.Core": "1.0.0-*",
+    "OnionCQRS.Services": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "net4.5.1": { }
+  }
+}
