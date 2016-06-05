@@ -37,7 +37,9 @@
       "version": "1.0.0-preview1-final",
       "type": "build"
     },
-    "OnionCQRS.Core": "1.0.0-*"
+    "OnionCQRS.Bootstrapper": "1.0.0-*",
+    "OnionCQRS.Core": "1.0.0-*",
+    "OnionCQRS.Data": "1.0.0-*"
   },
 
   "tools": {

@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DbContextScope.EfCore.Implementations;
+using DbContextScope.EfCore.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using OnionCQRS.Bootstrapper;
 using OnionCQRS.Data;
-using OnionCQRS.Models;
-using OnionCQRS.Services;
+using OnionCQRS.Infrastructure.Logging;
 
 namespace OnionCQRS
 {
@@ -39,20 +41,39 @@ namespace OnionCQRS
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<CompanyDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
 
             services.AddMvc();
 
             // Add Autofac
             var containerBuilder = new ContainerBuilder();
-            //containerBuilder.RegisterModule<DefaultModule>();
+
+            DbContextScopeExtensionConfig.Setup();
+
+            //containerBuilder.RegisterType<CompanyDbContext>().As<ICompanyDbContext>().InstancePerRequest();
+
+            containerBuilder.RegisterType<DbContextScopeFactory>()
+                .As<IDbContextScopeFactory>().SingleInstance();
+
+            containerBuilder.Register(b => NLogLogger.Instance).SingleInstance();
+
+            // Registers our IMediator (abstraction for observer pattern, which lets us use CQRS)
+            containerBuilder.RegisterModule(new MediatorModule(
+                Assembly.Load("OnionCQRS.Services")));
+
+            // Registers our Fluent Validations that we use on our Models
+            containerBuilder.RegisterModule(new FluentValidationModule(
+                Assembly.Load("OnionCQRS.Services")));
+
+            // Registers our AutoMapper Profiles
+            containerBuilder.RegisterModule(new AutoMapperModule(
+                Assembly.Load("OnionCQRS.Services")));
+
             containerBuilder.Populate(services);
+
             var container = containerBuilder.Build();
+
             return container.Resolve<IServiceProvider>();
         }
 

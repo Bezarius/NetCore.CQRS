@@ -1,5 +1,6 @@
 ﻿using OnionCQRS.Core.Data;
 using OnionCQRS.Core.Extensions;
+using OnionCQRS.Data;
 
 namespace OnionCQRS.Bootstrapper
 {

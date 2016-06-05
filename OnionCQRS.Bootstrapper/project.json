@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "dependencies": {
@@ -6,6 +6,8 @@
     "AutoMapper": "5.0.0-beta-1",
     "FluentValidation": "6.3.4-alpha",
     "OnionCQRS.Core": "1.0.0-*",
+    "OnionCQRS.Data": "1.0.0-*",
+    "OnionCQRS.Infrastructure": "1.0.0-*",
     "OnionCQRS.Services": "1.0.0-*"
   },
 
