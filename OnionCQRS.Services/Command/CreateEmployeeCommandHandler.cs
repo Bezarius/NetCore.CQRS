@@ -38,7 +38,7 @@ namespace OnionCQRS.Services.Command
 
                 dbContextScope.SaveChanges();
 
-                // This student will have the Id field populated.
+                // This employee will have the Id field populated.
                 return domainModel;
             }
         }
